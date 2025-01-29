@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Master</title>
+    <link rel="icon" href="icon.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playwrite+VN:wght@100..400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css"> <!-- Link to the external CSS file -->
+</head>
+<body>
+    <header>
+        <h1 class="logo">Resume Master</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="creator.html">Create New</a>
+            <a href="#">Membership</a>
+            <a href="#">Contact Us</a>
+        </nav>
+        <div class="theme-switch" onclick="toggleTheme()">
+            <span></span>
+        </div>
+        <img src="Theme.png" alt="Theme Icon" class="theme-icon">
+    </header>
+
+    <main>
+        <div class="profile-section">
+            <h3>Profile</h3>
+            <img src="icon.png" alt="Profile Picture">
+            <p>Welcome,</p>
+            <h3>Lupu Victor</h3>
+            <div class="account-data">
+                <div class="account-card">
+                    <p class="account-title">Resumes Created:</p>
+                    <p class="account-value">5</p>
+                </div>
+                <div class="account-card unfinished-resumes">
+                    <p class="account-title">Unfinished Resumes:</p>
+                    <p class="account-value">2</p>
+                </div>
+                <div class="account-card membership">
+                    <p class="account-title">Membership:</p>
+                    <p class="account-value">Free</p>
+                </div>                
+            </div>
+            <button class="account-settings-btn">Account Settings</button>
+            <button class="logout-btn">Log Out</button>
+        </div>
+        <div class="review-div">
+        <section class="reviews-section">
+            <h3 class="section-title">Client Reviews</h3>
+            <div class="review-card">
+                <img src="pfp.png" alt="Client 1" class="review-profile">
+                <div class="review-content">
+                    <h4>Sas Stefania<span class="stars">★★★★★</span></h4>
+                    <p>“This resume builder saved me so much time! Highly recommend.”</p>
+                </div>
+            </div>
+            <div class="review-card">
+                <img src="pfp.png" alt="Client 2" class="review-profile">
+                <div class="review-content">
+                    <h4>Pirvu Sergiu<span class="stars">★★☆☆☆</span></h4>
+                    <p>“Great templates and easy to use. Could use more features.”</p>
+                </div>
+            </div>
+            <div class="review-card">
+                <img src="pfp.png" alt="Client 3" class="review-profile">
+                <div class="review-content">
+                    <h4>Robert Cipri<span class="stars">★★★★★</span></h4>
+                    <p>“The best resume tool I've ever used! Landed my dream job!”</p>
+                </div>
+            </div>
+            <div class="review-card">
+                <img src="pfp.png" alt="Client 3" class="review-profile">
+                <div class="review-content">
+                    <h4>Paul Homor<span class="stars">★★★★★</span></h4>
+                    <p>“I finally got my dream job after using this tool to create a resume!”</p>
+                </div>
+            </div>
+            <div class="feature-buttons">
+                <button class="btn">Show More</button>
+                <button class="btn card-btn">Add Review</button> <!-- Added card-btn class here -->
+            </div>
+        </section>  
+        </div>
+        <div>
+            <div class="card">
+                <h2>Welcome!</h2>
+                <p>Create professional resumes in minutes. Fill in the details, preview your resume, and download it as a PDF.</p>
+            </div>
+
+            <section class="features">
+                <div class="feature">
+                    <h3>Easy to Use</h3>
+                    <p>Our intuitive design ensures you can create resumes effortlessly.</p>
+                </div>
+                <div class="feature">
+                    <h3>Customizable Templates</h3>
+                    <p>Select from a range of templates tailored to different industries.</p>
+                </div>
+                <div class="feature">
+                    <h3>Instant Previews</h3>
+                    <p>See changes in real-time as you build your resume.</p>
+                </div>
+                <div class="feature">
+                    <h3>Secure Downloads</h3>
+                    <p>Your resumes are private and secure, available for download as PDFs.</p>
+                </div>
+                <div class="feature">
+                    <h3>Secure Downloads</h3>
+                    <p>Your resumes are private and secure, available for download as PDFs.</p>
+                </div>
+                <div class="feature">
+                    <h3>Secure Downloads</h3>
+                    <p>Your resumes are private and secure, available for download as PDFs.</p>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer>
+        &copy; 2025 Resume Master | Made with care
+    </footer>
+
+    <script>
+        function toggleTheme() {
+            document.body.dataset.theme = document.body.dataset.theme === 'dark' ? '' : 'dark';
+        }
+    </script>
+</body>
+</html>

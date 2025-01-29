@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Information - Resume Master</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playwrite+VN:wght@100..400&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Header - Reused from the Index Page -->
+<header>
+
+    <h1 class="logo">Creator</h1>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="creator.html">Create New</a>
+        <a href="#">Membership</a>
+        <a href="#">Contact Us</a>
+    </nav>
+    <div class="theme-switch" onclick="toggleTheme()">
+        <span></span>
+    </div>
+    <img src="Theme.png" alt="Theme Icon" class="theme-icon">
+
+</header>
+
+<main>
+
+    <section class="personal-info">
+        <div id="creation-form-card" class="card">
+        <!--Titile-->
+        <h2 style="text-align: center;">Personal Information</h2>
+        <!-- Personal Form (Card) -->
+            <div class="card">
+                
+                <form class="personal-form" id="personal-form">
+                  <!-- Progress Bar -->
+                    <div class="progress-bar-container">
+                        <div class="progress-bar">
+                            <div class="progress" id="progress-bar"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="photo">Profile Photo</label>
+                        <input type="file" id="photo" name="photo" accept="image/*" required>
+                    </div>
+      
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                    </div>
+      
+                    <div class="form-group">
+                        <label for="gender">Gender</label>
+                        <select id="gender" name="gender" required>
+                            <option value="" disabled selected>Select your gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nat">Nationality</label>
+                        <input type="text" id="nat" name="Nationality" placeholder="Enter your nationality" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="age">Age</label>
+                        <input type="number" id="age" name="age" placeholder="Enter your age" required>
+                    </div>
+      
+                    <div class="form-group">
+                        <button type="button" class="submit-btn" id="nextBtn">Next</button>
+                    </div>
+                    
+                </form>
+                    <!-- Expertise Form (Initially Hidden) -->
+                <form id="expertiseForm" style="display: none;">
+                    <h2>Describe Your Expertise</h2>
+                    <textarea placeholder="Write about your skills..." required></textarea>
+                    
+                    <button type="button" class="submit-btn" id="finishBtn">Finish</button>
+
+                    
+                </form>
+            </div>
+
+        </div>
+    </section>
+
+</main>
+  
+
+<!-- Footer - Reused from the Index Page -->
+<footer>
+    &copy; 2025 Resume Master | Made with care
+</footer>
+
+<script>
+    // Theme Toggle Functionality
+    function toggleTheme() {
+        document.body.dataset.theme = document.body.dataset.theme === 'dark' ? '' : 'dark';
+    }
+
+    // Function to update the progress bar
+    function updateProgressBar() {
+        const totalSteps = 6; // Total number of required fields (photo, name, gender, age)
+        let completedSteps = 0; // Initialize the counter for completed steps
+
+        // Check if each input field has a value to determine completion
+        if (document.getElementById('photo').files.length > 0) {
+            completedSteps++;
+        }
+        if (document.getElementById('name').value.trim() !== '') {
+            completedSteps++;
+        }
+        if (document.getElementById('gender').value.trim() !== '') {
+            completedSteps++;
+        }
+        if (document.getElementById('age').value.trim() !== '') {
+            completedSteps++;
+        }
+        if(document.getElementById('email').value.trim() !=='') {
+            completedSteps++;
+        }
+        if(document.getElementById('nat').value.trim() !=='') {
+            completedSteps++;
+        }
+
+        // Calculate the percentage of completion
+        const progressPercentage = (completedSteps / totalSteps) * 100;
+
+        // Update the width of the progress bar
+        const progressBar = document.getElementById('progress-bar');
+        progressBar.style.width = progressPercentage + '%';
+    }
+
+  // Event listeners to trigger progress bar update when user interacts with the form
+  document.getElementById('photo').addEventListener('change', updateProgressBar);
+  document.getElementById('name').addEventListener('input', updateProgressBar);
+  document.getElementById('gender').addEventListener('change', updateProgressBar);
+  document.getElementById('age').addEventListener('input', updateProgressBar);
+  document.getElementById('email').addEventListener('input', updateProgressBar);
+  document.getElementById('nat').addEventListener('input', updateProgressBar);
+
+  // Initial update when the page loads
+  window.onload = updateProgressBar;
+  document.addEventListener("DOMContentLoaded", function () {
+    let nextButton = document.getElementById("nextBtn");
+    let personalForm = document.getElementById("personal-form");
+    let expertiseForm = document.getElementById("expertiseForm");
+    let progressBar = document.getElementById("progress-bar"); // Progress bar
+
+    nextButton.addEventListener("click", function () {
+
+        // Hide personal form & show expertise form
+        personalForm.style.display = "none";
+        expertiseForm.style.display = "block";
+
+        // Update progress bar (assuming 50% completion for step 2)
+        if (progressBar) {
+            progressBar.style.width = "50%";
+        }
+    });
+});
+document.getElementById("finishBtn").addEventListener("click", function (e) {
+    e.preventDefault(); // Prevent form submission
+
+    // Get form data
+    const name = document.getElementById("name").value;
+    const gender = document.getElementById("gender").value;
+    const age = document.getElementById("age").value;
+    const email = document.getElementById("email").value;
+    const nat = document.getElementById("nat").value;
+    const expertise = document.querySelector("#expertiseForm textarea").value;
+
+    // Check if fields are empty
+    if (!name || !gender || !age || !expertise) {
+        alert("Please fill out all fields before generating the resume!");
+        return;
+    }
+
+    // Initialize jsPDF
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    // Resume content
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(20);
+    doc.text("Resume", 105, 20, null, null, "center");
+
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(14);
+    doc.text(`Name: ${name}`, 20, 40);
+    doc.text(`Gender: ${gender}`, 20, 50);
+    doc.text(`Age: ${age}`, 20, 60);
+    doc.text(`Email: ${email}`, 20, 70);
+    doc.text(`NAtionality: ${nat}`, 20, 80);
+
+    doc.setFont("helvetica", "bold");
+    doc.text("Expertise:", 20, 100);
+
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(12);
+    doc.text(expertise, 20, 110, { maxWidth: 170 });
+
+    // Save PDF
+    doc.save(`${name}_Resume.pdf`);
+    
+    // Redirect to the index page
+    window.location.href = "index.html"; // Change to the correct path if needed
+});
+
+
+</script>
+
+</body>
+</html>
